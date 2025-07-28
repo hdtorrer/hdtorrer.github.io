@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Abky - Modern Mobile Prototype</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
             --primary: #6366f1;
@@ -76,16 +77,17 @@
             background: var(--gray-50);
         }
 
-        .screen.active {
-            display: flex;
-            animation: screenFadeIn 0.3s ease-out;
-        }
+            .screen.active {
+                display: flex;
+                animation: screenFadeIn 0.3s ease-out;
+            }
 
         @keyframes screenFadeIn {
             from {
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -134,23 +136,23 @@
             color: var(--gray-700);
         }
 
-        .icon-btn:hover {
-            background: var(--gray-100);
-            transform: scale(1.05);
-        }
+            .icon-btn:hover {
+                background: var(--gray-100);
+                transform: scale(1.05);
+            }
 
-        .icon-btn:active {
-            transform: scale(0.95);
-        }
+            .icon-btn:active {
+                transform: scale(0.95);
+            }
 
-        .icon-btn.primary {
-            background: var(--primary);
-            color: var(--white);
-        }
+            .icon-btn.primary {
+                background: var(--primary);
+                color: var(--white);
+            }
 
-        .icon-btn.primary:hover {
-            background: var(--primary-dark);
-        }
+                .icon-btn.primary:hover {
+                    background: var(--primary-dark);
+                }
 
         /* Content */
         .content {
@@ -185,27 +187,28 @@
             position: relative;
         }
 
-        .nav-item.active {
-            color: var(--primary);
-        }
+            .nav-item.active {
+                color: var(--primary);
+            }
 
-        .nav-item.active::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 32px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 0 0 3px 3px;
-        }
+                .nav-item.active::before {
+                    content: '';
+                    position: absolute;
+                    top: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 32px;
+                    height: 3px;
+                    background: var(--primary);
+                    border-radius: 0 0 3px 3px;
+                }
 
         .nav-icon {
             width: 24px;
             height: 24px;
             margin-bottom: 4px;
             transition: var(--transition);
+            font-size: 24px;
         }
 
         .nav-item:active .nav-icon {
@@ -233,24 +236,24 @@
             box-shadow: 0 8px 32px rgba(102,126,234,0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(102,126,234,0.4);
-        }
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 40px rgba(102,126,234,0.4);
+            }
 
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-sm);
-        }
+            .btn:active {
+                transform: translateY(0);
+                box-shadow: var(--shadow-sm);
+            }
 
         .btn-secondary {
             background: var(--gray-100);
             color: var(--gray-700);
         }
 
-        .btn-secondary:hover {
-            background: var(--gray-200);
-        }
+            .btn-secondary:hover {
+                background: var(--gray-200);
+            }
 
         .btn-outline {
             background: transparent;
@@ -258,12 +261,12 @@
             color: var(--gray-700);
         }
 
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: var(--primary);
-            background-opacity: 0.05;
-        }
+            .btn-outline:hover {
+                border-color: var(--primary);
+                color: var(--primary);
+                background: var(--primary);
+                background-opacity: 0.05;
+            }
 
         .btn-sm {
             padding: 8px 16px;
@@ -294,28 +297,28 @@
             font-family: inherit;
         }
 
-        .input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
+            .input:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            }
 
         .input-icon {
             position: relative;
         }
 
-        .input-icon .icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray-400);
-            pointer-events: none;
-        }
+            .input-icon .icon {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--gray-400);
+                pointer-events: none;
+            }
 
-        .input-icon .input {
-            padding-left: 44px;
-        }
+            .input-icon .input {
+                padding-left: 44px;
+            }
 
         /* Cards */
         .card {
@@ -328,10 +331,10 @@
             border: 1px solid var(--gray-100);
         }
 
-        .card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
+            .card:hover {
+                box-shadow: var(--shadow-md);
+                transform: translateY(-2px);
+            }
 
         .card-glass {
             background: rgba(255, 255, 255, 0.8);
@@ -350,20 +353,25 @@
             overflow: hidden;
         }
 
-        .summary-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
+            .summary-card::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                animation: shimmer 3s infinite;
+            }
 
         @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .summary-amount {
@@ -396,20 +404,25 @@
             position: relative;
         }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: rgba(255,255,255,0.5);
-            animation: pulse 2s infinite;
-        }
+            .progress-fill::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: rgba(255,255,255,0.5);
+                animation: pulse 2s infinite;
+            }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         /* Transaction List */
@@ -422,13 +435,13 @@
             transition: var(--transition);
         }
 
-        .transaction-item:last-child {
-            border-bottom: none;
-        }
+            .transaction-item:last-child {
+                border-bottom: none;
+            }
 
-        .transaction-item:hover {
-            background: var(--gray-50);
-        }
+            .transaction-item:hover {
+                background: var(--gray-50);
+            }
 
         .transaction-icon {
             width: 48px;
@@ -441,11 +454,39 @@
             font-size: 24px;
         }
 
-        .transaction-icon.food { background: #fee2e2; }
-        .transaction-icon.transport { background: #dbeafe; }
-        .transaction-icon.shopping { background: #d1fae5; }
-        .transaction-icon.entertainment { background: #fef3c7; }
-        .transaction-icon.health { background: #e9d5ff; }
+            .transaction-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .transaction-icon .material-icons {
+                font-size: 24px;
+            }
+
+            .transaction-icon.food {
+                background: #fee2e2;
+                color: #dc2626;
+            }
+
+            .transaction-icon.transport {
+                background: #dbeafe;
+                color: #2563eb;
+            }
+
+            .transaction-icon.shopping {
+                background: #d1fae5;
+                color: #059669;
+            }
+
+            .transaction-icon.entertainment {
+                background: #fef3c7;
+                color: #d97706;
+            }
+
+            .transaction-icon.health {
+                background: #e9d5ff;
+                color: #7c3aed;
+            }
 
         .transaction-details {
             flex: 1;
@@ -468,8 +509,13 @@
             font-variant-numeric: tabular-nums;
         }
 
-        .amount-negative { color: var(--danger); }
-        .amount-positive { color: var(--success); }
+        .amount-negative {
+            color: var(--danger);
+        }
+
+        .amount-positive {
+            color: var(--success);
+        }
 
         /* Floating Action Button */
         .fab {
@@ -492,14 +538,14 @@
             transition: var(--transition);
         }
 
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-xl);
-        }
+            .fab:hover {
+                transform: scale(1.1);
+                box-shadow: var(--shadow-xl);
+            }
 
-        .fab:active {
-            transform: scale(0.95);
-        }
+            .fab:active {
+                transform: scale(0.95);
+            }
 
         /* Modal */
         .modal {
@@ -515,10 +561,10 @@
             transition: var(--transition);
         }
 
-        .modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
+            .modal.show {
+                opacity: 1;
+                visibility: visible;
+            }
 
         .modal-content {
             background: var(--white);
@@ -573,17 +619,31 @@
             gap: 8px;
         }
 
-        .quick-action:hover {
-            border-color: var(--primary);
-            background: var(--gray-50);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
+            .quick-action:hover {
+                border-color: var(--primary);
+                background: var(--gray-50);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-sm);
+            }
 
         .quick-action-icon {
             font-size: 32px;
             margin-bottom: 4px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+            .quick-action-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .quick-action-icon .material-icons {
+                font-size: 32px;
+            }
 
         .quick-action-label {
             font-weight: 600;
@@ -610,27 +670,41 @@
             transition: var(--transition);
         }
 
-        .category-item:hover {
-            border-color: var(--primary);
-            background: var(--primary);
-            background-opacity: 0.05;
-        }
+            .category-item:hover {
+                border-color: var(--primary);
+                background: var(--primary);
+                background-opacity: 0.05;
+            }
 
-        .category-item.selected {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: var(--white);
-        }
+            .category-item.selected {
+                border-color: var(--primary);
+                background: var(--primary);
+                color: var(--white);
+            }
 
-        .category-item.selected .category-icon {
-            transform: scale(1.1);
-        }
+                .category-item.selected .category-icon {
+                    transform: scale(1.1);
+                }
 
         .category-icon {
             font-size: 28px;
             margin-bottom: 4px;
             transition: var(--transition);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+            .category-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .category-icon .material-icons {
+                font-size: 28px;
+            }
 
         .category-name {
             font-size: 11px;
@@ -651,9 +725,9 @@
             letter-spacing: -0.02em;
         }
 
-        .amount-input:focus {
-            outline: none;
-        }
+            .amount-input:focus {
+                outline: none;
+            }
 
         /* Budget Categories */
         .budget-category {
@@ -675,7 +749,21 @@
 
         .budget-icon {
             font-size: 24px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+            .budget-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .budget-icon .material-icons {
+                font-size: 24px;
+            }
 
         .budget-name {
             font-weight: 600;
@@ -702,9 +790,17 @@
             transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .budget-fill.safe { background: var(--success); }
-        .budget-fill.warning { background: var(--warning); }
-        .budget-fill.danger { background: var(--danger); }
+            .budget-fill.safe {
+                background: var(--success);
+            }
+
+            .budget-fill.warning {
+                background: var(--warning);
+            }
+
+            .budget-fill.danger {
+                background: var(--danger);
+            }
 
         .budget-meta {
             font-size: 13px;
@@ -744,8 +840,13 @@
         }
 
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .skeleton-text {
@@ -753,20 +854,43 @@
             margin-bottom: 8px;
         }
 
-        .skeleton-text.large {
-            height: 24px;
-            width: 60%;
-        }
+            .skeleton-text.large {
+                height: 24px;
+                width: 60%;
+            }
 
         /* Utilities */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .mb-0 { margin-bottom: 0; }
-        .mb-1 { margin-bottom: 8px; }
-        .mb-2 { margin-bottom: 16px; }
-        .mb-3 { margin-bottom: 24px; }
-        .mt-2 { margin-top: 16px; }
-        .mt-3 { margin-top: 24px; }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .mb-0 {
+            margin-bottom: 0;
+        }
+
+        .mb-1 {
+            margin-bottom: 8px;
+        }
+
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+
+        .mb-3 {
+            margin-bottom: 24px;
+        }
+
+        .mt-2 {
+            margin-top: 16px;
+        }
+
+        .mt-3 {
+            margin-top: 24px;
+        }
 
         /* Icons */
         .icon {
@@ -778,6 +902,43 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             fill: none;
+        }
+
+        /* Special icon styles for different contexts */
+        .icon-food svg {
+            color: #dc2626;
+        }
+
+        .icon-transport svg {
+            color: #2563eb;
+        }
+
+        .icon-shopping svg {
+            color: #059669;
+        }
+
+        .icon-entertainment svg {
+            color: #d97706;
+        }
+
+        .icon-health svg {
+            color: #7c3aed;
+        }
+
+        .icon-shield svg {
+            color: #6366f1;
+        }
+
+        .icon-vacation svg {
+            color: #0891b2;
+        }
+
+        .icon-car svg {
+            color: #ea580c;
+        }
+
+        .icon-lightbulb svg {
+            color: #f59e0b;
         }
 
         /* Responsive */
@@ -795,42 +956,44 @@
         <div id="landing" class="screen active">
             <div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
                 <div style="width: 120px; height: 120px; background: #E8EFFF; border-radius: 32px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <svg style="width: 64px; height: 64px; color: #6366f1;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 2L3 7l9 5 9-5-9-5z"/>
-                        <path d="M3 17l9 5 9-5M3 12l9 5 9-5"/>
+                    <svg style="width: 64px; height: 64px; color: #6366f1;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L3 7l9 5 9-5-9-5z" />
+                        <path d="M3 17l9 5 9-5" />
+                        <path d="M3 12l9 5 9-5" />
                     </svg>
                 </div>
                 <h1 style="font-size: 40px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em;">Abky</h1>
                 <p style="font-size: 20px; color: var(--gray-600); margin-bottom: 48px; line-height: 1.6;">
                     Track spending,<br>save smarter,<br>stress less
                 </p>
-                
+
                 <button class="btn" onclick="showScreen('email')" style="width: 100%; max-width: 280px;">
                     Start Free
                     <svg class="icon" style="width: 20px; height: 20px;">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                 </button>
-                
+
                 <div style="display: flex; gap: 32px; margin: 32px 0; font-size: 14px; color: var(--gray-500);">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <circle cx="12" cy="16" r="1"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <circle cx="12" cy="16" r="1" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
                         <span>No password needed</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            <path d="M9 12l2 2 4-4" />
                         </svg>
                         <span>Bank-level security</span>
                     </div>
                 </div>
-                
+
                 <p style="color: var(--gray-500); font-size: 14px;">
-                    Have an account? 
+                    Have an account?
                     <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;" onclick="showScreen('email')">Sign In</a>
                 </p>
             </div>
@@ -840,8 +1003,8 @@
         <div id="email" class="screen">
             <div class="header">
                 <button class="icon-btn" onclick="showScreen('landing')">
-                    <svg class="icon">
-                        <polyline points="15 18 9 12 15 6"></polyline>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
                     </svg>
                 </button>
                 <h1 class="header-title"></h1>
@@ -849,30 +1012,31 @@
             </div>
             <div class="content" style="display: flex; flex-direction: column; justify-content: center; padding-top: 60px;">
                 <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 16px; text-align: center;">Enter your email to get started</h2>
-                
+
                 <div class="input-group" style="margin-top: 40px;">
                     <div class="input-icon">
-                        <svg class="icon">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
                         </svg>
                         <input type="email" class="input" placeholder="you@example.com" id="emailInput">
                     </div>
                 </div>
-                
+
                 <button class="btn" onclick="showScreen('check-email')" style="margin-top: 24px;">
                     Send Magic Link
-                    <svg class="icon" style="width: 20px; height: 20px;">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    <svg class="icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13" />
+                        <polygon points="22,2 15,22 11,13 2,9 22,2" />
                     </svg>
                 </button>
-                
+
                 <div class="card mt-3" style="background: var(--gray-50); border: 1px solid var(--gray-200);">
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <svg class="icon" style="color: var(--primary);">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <svg class="icon" style="color: var(--primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <circle cx="12" cy="16" r="1" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
                         <span style="font-size: 14px; color: var(--gray-600);">We'll never share your email</span>
                     </div>
@@ -884,8 +1048,8 @@
         <div id="check-email" class="screen">
             <div class="header">
                 <button class="icon-btn" onclick="showScreen('email')">
-                    <svg class="icon">
-                        <polyline points="15 18 9 12 15 6"></polyline>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
                     </svg>
                 </button>
                 <h1 class="header-title"></h1>
@@ -893,30 +1057,30 @@
             </div>
             <div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 60px;">
                 <div style="width: 120px; height: 120px; background: var(--gray-50); border-radius: 32px; display: flex; align-items: center; justify-content: center; margin-bottom: 32px;">
-                    <svg style="width: 64px; height: 64px; color: var(--primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
+                    <svg style="width: 64px; height: 64px; color: var(--primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
                     </svg>
                 </div>
                 <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 16px;">Check your email</h2>
-                
+
                 <p style="margin-bottom: 8px; color: var(--gray-600);">We sent a secure login link to:</p>
                 <p style="font-weight: 600; font-size: 18px; margin-bottom: 32px; color: var(--gray-900);">you@example.com</p>
-                
+
                 <p style="margin-bottom: 32px; color: var(--gray-600); line-height: 1.6;">
                     The link expires in 15 minutes for security.
                 </p>
-                
+
                 <button class="btn btn-secondary" style="margin-bottom: 16px;">Resend Link</button>
-                
+
                 <p style="color: var(--gray-500); font-size: 14px;">
-                    Didn't get it? 
+                    Didn't get it?
                     <a href="#" style="color: var(--primary); font-weight: 600; text-decoration: none;">Check spam folder</a>
                 </p>
-                
+
                 <button class="btn" onclick="showScreen('dashboard')" style="margin-top: 40px; background: var(--success);">
-                    <svg class="icon" style="width: 20px; height: 20px;">
-                        <polyline points="20 6 9 17 4 12"></polyline>
+                    <svg class="icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20,6 9,17 4,12" />
                     </svg>
                     Continue to Dashboard
                 </button>
@@ -927,26 +1091,26 @@
         <div id="dashboard" class="screen">
             <div class="header">
                 <button class="icon-btn">
-                    <svg class="icon">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18" />
+                        <path d="M3 12h18" />
+                        <path d="M3 18h18" />
                     </svg>
                 </button>
                 <h1 class="header-title">Abky</h1>
                 <div class="header-actions">
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                            <polyline points="16 17 21 12 16 7"></polyline>
-                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16,17 21,12 16,7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
                         </svg>
                     </button>
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                            <line x1="12" y1="17" x2="12" y2="17"></line>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12" y2="17" />
                         </svg>
                     </button>
                 </div>
@@ -954,7 +1118,7 @@
             <div class="content">
                 <div style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">Good morning, Henry!</div>
                 <div style="color: var(--gray-600); margin-bottom: 24px;">Friday, July 26</div>
-                
+
                 <div class="summary-card">
                     <div class="summary-label">This Month</div>
                     <div class="summary-amount">$1,247 / $2,000</div>
@@ -966,34 +1130,44 @@
                         <span style="font-size: 14px; opacity: 0.9;">12 days left</span>
                     </div>
                 </div>
-                
+
                 <div class="quick-actions">
                     <div class="quick-action" onclick="showAddTransaction()">
-                        <div class="quick-action-icon">💰</div>
+                        <div class="quick-action-icon">
+                            <span class="material-icons">add</span>
+                        </div>
                         <div class="quick-action-label">Add Transaction</div>
                     </div>
                     <div class="quick-action" onclick="showScreen('budget')">
-                        <div class="quick-action-icon">📊</div>
+                        <div class="quick-action-icon">
+                            <span class="material-icons">pie_chart</span>
+                        </div>
                         <div class="quick-action-label">View Budget</div>
                     </div>
                     <div class="quick-action" onclick="showScreen('goals')">
-                        <div class="quick-action-icon">🎯</div>
+                        <div class="quick-action-icon">
+                            <span class="material-icons">trending_up</span>
+                        </div>
                         <div class="quick-action-label">Check Goals</div>
                     </div>
                     <div class="quick-action" onclick="showScreen('transactions')">
-                        <div class="quick-action-icon">📋</div>
+                        <div class="quick-action-icon">
+                            <span class="material-icons">list</span>
+                        </div>
                         <div class="quick-action-label">View All</div>
                     </div>
                 </div>
-                
+
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="font-size: 18px; font-weight: 600;">Recent Transactions</h3>
                     <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px; font-weight: 500;" onclick="showScreen('transactions')">View All</a>
                 </div>
-                
+
                 <div class="card">
                     <div class="transaction-item">
-                        <div class="transaction-icon food">🍕</div>
+                        <div class="transaction-icon food">
+                            <span class="material-icons">restaurant</span>
+                        </div>
                         <div class="transaction-details">
                             <div class="transaction-name">Lunch</div>
                             <div class="transaction-meta">12:30 PM • Food</div>
@@ -1001,7 +1175,9 @@
                         <div class="transaction-amount amount-negative">-$12.50</div>
                     </div>
                     <div class="transaction-item">
-                        <div class="transaction-icon transport">⛽</div>
+                        <div class="transaction-icon transport">
+                            <span class="material-icons">local_gas_station</span>
+                        </div>
                         <div class="transaction-details">
                             <div class="transaction-name">Gas</div>
                             <div class="transaction-meta">6:30 PM • Transport</div>
@@ -1009,7 +1185,9 @@
                         <div class="transaction-amount amount-negative">-$45.00</div>
                     </div>
                     <div class="transaction-item" style="border-bottom: none;">
-                        <div class="transaction-icon shopping">🛒</div>
+                        <div class="transaction-icon shopping">
+                            <span class="material-icons">shopping_cart</span>
+                        </div>
                         <div class="transaction-details">
                             <div class="transaction-name">Grocery</div>
                             <div class="transaction-meta">2:15 PM • Groceries</div>
@@ -1020,41 +1198,23 @@
             </div>
             <div class="bottom-nav">
                 <div class="nav-item active" onclick="showScreen('dashboard')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                        <polyline points="9,22 9,12 15,12 15,22"/>
-                    </svg>
+                    <span class="material-icons nav-icon">home</span>
                     <span>Home</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('transactions')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
+                    <span class="material-icons nav-icon">list</span>
                     <span>Transactions</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="20" x2="18" y2="10"/>
-                        <line x1="12" y1="20" x2="12" y2="4"/>
-                        <line x1="6" y1="20" x2="6" y2="14"/>
-                    </svg>
+                    <span class="material-icons nav-icon">pie_chart</span>
                     <span>Budget</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
+                    <span class="material-icons nav-icon">trending_up</span>
                     <span>Goals</span>
                 </div>
                 <div class="nav-item">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="1"/>
-                        <circle cx="19" cy="12" r="1"/>
-                        <circle cx="5" cy="12" r="1"/>
-                    </svg>
+                    <span class="material-icons nav-icon">more_horiz</span>
                     <span>More</span>
                 </div>
             </div>
@@ -1071,40 +1231,34 @@
                 <h1 class="header-title">Transactions</h1>
                 <div class="header-actions">
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
                         </svg>
                     </button>
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <line x1="4" y1="21" x2="4" y2="14"></line>
-                            <line x1="4" y1="10" x2="4" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12" y2="3"></line>
-                            <line x1="20" y1="21" x2="20" y2="16"></line>
-                            <line x1="20" y1="12" x2="20" y2="3"></line>
-                            <line x1="1" y1="14" x2="7" y2="14"></line>
-                            <line x1="9" y1="8" x2="15" y2="8"></line>
-                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
                         </svg>
                     </button>
                 </div>
             </div>
             <div class="content">
                 <div class="input-icon mb-3">
-                    <svg class="icon">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
                     </svg>
                     <input type="text" class="input" placeholder="Search transactions...">
                 </div>
-                
+
                 <div class="card" style="overflow: hidden;">
                     <div style="padding: 16px 20px; font-weight: 600; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); margin: -20px -20px 0 -20px;">Today</div>
                     <div style="margin: 0 -20px;">
                         <div class="transaction-item" style="padding: 16px 20px;">
-                            <div class="transaction-icon food">🍕</div>
+                            <div class="transaction-icon food">
+                                <span class="material-icons">restaurant</span>
+                            </div>
                             <div class="transaction-details">
                                 <div class="transaction-name">Pizza Lunch</div>
                                 <div class="transaction-meta">12:30 PM • Food</div>
@@ -1112,7 +1266,9 @@
                             <div class="transaction-amount amount-negative">-$12.50</div>
                         </div>
                         <div class="transaction-item" style="padding: 16px 20px;">
-                            <div class="transaction-icon food">☕</div>
+                            <div class="transaction-icon food">
+                                <span class="material-icons">restaurant</span>
+                            </div>
                             <div class="transaction-details">
                                 <div class="transaction-name">Coffee</div>
                                 <div class="transaction-meta">9:15 AM • Food</div>
@@ -1121,12 +1277,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card" style="overflow: hidden;">
                     <div style="padding: 16px 20px; font-weight: 600; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); margin: -20px -20px 0 -20px;">Yesterday</div>
                     <div style="margin: 0 -20px;">
                         <div class="transaction-item" style="padding: 16px 20px;">
-                            <div class="transaction-icon transport">⛽</div>
+                            <div class="transaction-icon transport">
+                                <span class="material-icons">local_gas_station</span>
+                            </div>
                             <div class="transaction-details">
                                 <div class="transaction-name">Shell Gas</div>
                                 <div class="transaction-meta">6:30 PM • Transport</div>
@@ -1134,7 +1292,9 @@
                             <div class="transaction-amount amount-negative">-$45.00</div>
                         </div>
                         <div class="transaction-item" style="padding: 16px 20px; border-bottom: none;">
-                            <div class="transaction-icon shopping">🛒</div>
+                            <div class="transaction-icon shopping">
+                                <span class="material-icons">shopping_cart</span>
+                            </div>
                             <div class="transaction-details">
                                 <div class="transaction-name">Costco</div>
                                 <div class="transaction-meta">2:15 PM • Groceries</div>
@@ -1144,46 +1304,28 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <button class="btn btn-secondary mt-2">Load More Transactions</button>
             </div>
             <div class="bottom-nav">
                 <div class="nav-item" onclick="showScreen('dashboard')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                        <polyline points="9,22 9,12 15,12 15,22"/>
-                    </svg>
+                    <span class="material-icons nav-icon">home</span>
                     <span>Home</span>
                 </div>
                 <div class="nav-item active">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
+                    <span class="material-icons nav-icon">list</span>
                     <span>Transactions</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="20" x2="18" y2="10"/>
-                        <line x1="12" y1="20" x2="12" y2="4"/>
-                        <line x1="6" y1="20" x2="6" y2="14"/>
-                    </svg>
+                    <span class="material-icons nav-icon">pie_chart</span>
                     <span>Budget</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
+                    <span class="material-icons nav-icon">trending_up</span>
                     <span>Goals</span>
                 </div>
                 <div class="nav-item">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="1"/>
-                        <circle cx="19" cy="12" r="1"/>
-                        <circle cx="5" cy="12" r="1"/>
-                    </svg>
+                    <span class="material-icons nav-icon">more_horiz</span>
                     <span>More</span>
                 </div>
             </div>
@@ -1200,17 +1342,17 @@
                 <h1 class="header-title">Budget</h1>
                 <div class="header-actions">
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M12 1v6m0 6v6m11-11h-6m-6 0H1"></path>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M12 1v6m0 6v6m11-11h-6m-6 0H1" />
                         </svg>
                     </button>
                     <button class="icon-btn">
-                        <svg class="icon">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="9" y1="9" x2="15" y2="9"/>
-                            <line x1="9" y1="12" x2="15" y2="12"/>
-                            <line x1="9" y1="15" x2="12" y2="15"/>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <line x1="9" y1="9" x2="15" y2="9" />
+                            <line x1="9" y1="12" x2="15" y2="12" />
+                            <line x1="9" y1="15" x2="12" y2="15" />
                         </svg>
                     </button>
                 </div>
@@ -1218,33 +1360,40 @@
             <div class="content">
                 <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 24px;">
                     <button class="icon-btn">
-                        <svg class="icon" style="width: 16px; height: 16px;">
-                            <polyline points="15 18 9 12 15 6"></polyline>
+                        <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
                         </svg>
                     </button>
                     <span style="margin: 0 20px; font-size: 18px; font-weight: 600;">July 2024</span>
                     <button class="icon-btn">
-                        <svg class="icon" style="width: 16px; height: 16px;">
-                            <polyline points="9 18 15 12 9 6"></polyline>
+                        <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6" />
                         </svg>
                     </button>
                 </div>
-                
+
                 <div class="summary-card" style="text-align: center;">
                     <div class="summary-amount">$1,247 / $2,000</div>
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 62%"></div>
                     </div>
-                    <div style="margin-top: 16px; font-size: 18px;">💡 You're on track!</div>
+                    <div style="margin-top: 16px; font-size: 18px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        You're on track!
+                    </div>
                     <div style="opacity: 0.9;">$753 left (12 days)</div>
                 </div>
-                
+
                 <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Categories</h3>
-                
+
                 <div class="budget-category">
                     <div class="budget-header">
                         <div class="budget-info">
-                            <span class="budget-icon">🍕</span>
+                            <span class="budget-icon icon-food">
+                                <span class="material-icons">restaurant</span>
+                            </span>
                             <span class="budget-name">Food</span>
                         </div>
                         <span class="budget-amount">$347/$400</span>
@@ -1254,11 +1403,13 @@
                     </div>
                     <div class="budget-meta">87% used • $53 remaining</div>
                 </div>
-                
+
                 <div class="budget-category">
                     <div class="budget-header">
                         <div class="budget-info">
-                            <span class="budget-icon">🚗</span>
+                            <span class="budget-icon icon-transport">
+                                <span class="material-icons">directions_bus</span>
+                            </span>
                             <span class="budget-name">Transport</span>
                         </div>
                         <span class="budget-amount">$185/$300</span>
@@ -1268,11 +1419,13 @@
                     </div>
                     <div class="budget-meta">62% used • $115 remaining</div>
                 </div>
-                
+
                 <div class="budget-category">
                     <div class="budget-header">
                         <div class="budget-info">
-                            <span class="budget-icon">🎬</span>
+                            <span class="budget-icon icon-entertainment">
+                                <span class="material-icons">movie</span>
+                            </span>
                             <span class="budget-name">Entertainment</span>
                         </div>
                         <span class="budget-amount">$45/$100</span>
@@ -1282,46 +1435,28 @@
                     </div>
                     <div class="budget-meta">45% used • $55 remaining</div>
                 </div>
-                
+
                 <button class="btn btn-secondary mt-2">View All Categories</button>
             </div>
             <div class="bottom-nav">
                 <div class="nav-item" onclick="showScreen('dashboard')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                        <polyline points="9,22 9,12 15,12 15,22"/>
-                    </svg>
+                    <span class="material-icons nav-icon">home</span>
                     <span>Home</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('transactions')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
+                    <span class="material-icons nav-icon">list</span>
                     <span>Transactions</span>
                 </div>
                 <div class="nav-item active">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="20" x2="18" y2="10"/>
-                        <line x1="12" y1="20" x2="12" y2="4"/>
-                        <line x1="6" y1="20" x2="6" y2="14"/>
-                    </svg>
+                    <span class="material-icons nav-icon">pie_chart</span>
                     <span>Budget</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
+                    <span class="material-icons nav-icon">trending_up</span>
                     <span>Goals</span>
                 </div>
                 <div class="nav-item">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="1"/>
-                        <circle cx="19" cy="12" r="1"/>
-                        <circle cx="5" cy="12" r="1"/>
-                    </svg>
+                    <span class="material-icons nav-icon">more_horiz</span>
                     <span>More</span>
                 </div>
             </div>
@@ -1347,7 +1482,9 @@
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 32px;">🛡️</span>
+                            <span style="font-size: 32px;" class="icon-shield">
+                                <span class="material-icons" style="font-size: 32px;">security</span>
+                            </span>
                             <div>
                                 <div style="font-weight: 600; font-size: 16px;">Emergency Fund</div>
                                 <div style="font-size: 13px; color: var(--gray-500);">$67 saved this month</div>
@@ -1360,11 +1497,13 @@
                     </div>
                     <div style="font-size: 13px; color: var(--gray-500);">49% complete • $2,550 to go</div>
                 </div>
-                
+
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 32px;">🏖️</span>
+                            <span style="font-size: 32px;" class="icon-vacation">
+                                <span class="material-icons" style="font-size: 32px;">flight</span>
+                            </span>
                             <div>
                                 <div style="font-weight: 600; font-size: 16px;">Vacation</div>
                                 <div style="font-size: 13px; color: var(--gray-500);">Target: Dec 2024</div>
@@ -1377,11 +1516,13 @@
                     </div>
                     <div style="font-size: 13px; color: var(--gray-500);">45% complete • 5 months left</div>
                 </div>
-                
+
                 <div class="card">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <div style="display: flex; align-items: center; gap: 12px;">
-                            <span style="font-size: 32px;">🚗</span>
+                            <span style="font-size: 32px;" class="icon-car">
+                                <span class="material-icons" style="font-size: 32px;">directions_car</span>
+                            </span>
                             <div>
                                 <div style="font-weight: 600; font-size: 16px;">New Car</div>
                                 <div style="font-size: 13px; color: var(--gray-500);">$133 needed monthly</div>
@@ -1394,10 +1535,12 @@
                     </div>
                     <div style="font-size: 13px; color: var(--gray-500);">15% complete • $6,800 to go</div>
                 </div>
-                
+
                 <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #7dd3fc;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                        <span style="font-size: 24px;">💡</span>
+                        <span style="font-size: 24px;" class="icon-lightbulb">
+                            <span class="material-icons" style="font-size: 24px;">lightbulb</span>
+                        </span>
                         <div style="font-weight: 600; color: var(--gray-900);">Tips & Insights</div>
                     </div>
                     <div style="color: var(--gray-700); line-height: 1.6;">"You saved $234 this month! That's 15% more than last month. Keep up the great work!"</div>
@@ -1405,41 +1548,23 @@
             </div>
             <div class="bottom-nav">
                 <div class="nav-item" onclick="showScreen('dashboard')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                        <polyline points="9,22 9,12 15,12 15,22"/>
-                    </svg>
+                    <span class="material-icons nav-icon">home</span>
                     <span>Home</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('transactions')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
+                    <span class="material-icons nav-icon">list</span>
                     <span>Transactions</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="20" x2="18" y2="10"/>
-                        <line x1="12" y1="20" x2="12" y2="4"/>
-                        <line x1="6" y1="20" x2="6" y2="14"/>
-                    </svg>
+                    <span class="material-icons nav-icon">pie_chart</span>
                     <span>Budget</span>
                 </div>
                 <div class="nav-item active">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
+                    <span class="material-icons nav-icon">trending_up</span>
                     <span>Goals</span>
                 </div>
                 <div class="nav-item">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="1"/>
-                        <circle cx="19" cy="12" r="1"/>
-                        <circle cx="5" cy="12" r="1"/>
-                    </svg>
+                    <span class="material-icons nav-icon">more_horiz</span>
                     <span>More</span>
                 </div>
             </div>
@@ -1447,9 +1572,9 @@
 
         <!-- Floating Action Button -->
         <button class="fab" onclick="showAddTransaction()">
-            <svg class="icon" style="width: 28px; height: 28px;">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+            <svg class="icon" style="width: 28px; height: 28px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14" />
+                <path d="M5 12h14" />
             </svg>
         </button>
 
@@ -1459,45 +1584,55 @@
                 <div class="modal-header">
                     <h2 class="modal-title">Add Transaction</h2>
                     <button class="icon-btn" onclick="hideAddTransaction()">
-                        <svg class="icon">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6L6 18" />
+                            <path d="M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label">Amount ($)</label>
                     <input type="number" class="amount-input" placeholder="0.00" id="amountInput">
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label">Category</label>
                     <div class="category-grid">
                         <div class="category-item" onclick="selectCategory(this)">
-                            <div class="category-icon">🍕</div>
+                            <div class="category-icon icon-food">
+                                <span class="material-icons">restaurant</span>
+                            </div>
                             <div class="category-name">Food</div>
                         </div>
                         <div class="category-item" onclick="selectCategory(this)">
-                            <div class="category-icon">⛽</div>
+                            <div class="category-icon icon-transport">
+                                <span class="material-icons">local_gas_station</span>
+                            </div>
                             <div class="category-name">Gas</div>
                         </div>
                         <div class="category-item" onclick="selectCategory(this)">
-                            <div class="category-icon">🛒</div>
+                            <div class="category-icon icon-shopping">
+                                <span class="material-icons">shopping_cart</span>
+                            </div>
                             <div class="category-name">Shop</div>
                         </div>
                         <div class="category-item" onclick="selectCategory(this)">
-                            <div class="category-icon">🎬</div>
+                            <div class="category-icon icon-entertainment">
+                                <span class="material-icons">movie</span>
+                            </div>
                             <div class="category-name">Fun</div>
                         </div>
                         <div class="category-item" onclick="selectCategory(this)">
-                            <div class="category-icon">💊</div>
+                            <div class="category-icon icon-health">
+                                <span class="material-icons">local_hospital</span>
+                            </div>
                             <div class="category-name">Health</div>
                         </div>
                     </div>
                     <button class="btn btn-secondary btn-sm mt-2">More Categories...</button>
                 </div>
-                
+
                 <details style="margin: 24px 0;">
                     <summary style="cursor: pointer; padding: 12px 0; font-weight: 600; color: var(--gray-700);">Optional Details</summary>
                     <div style="padding-top: 16px;">
@@ -1510,15 +1645,15 @@
                             <input type="date" class="input" value="2024-07-26">
                         </div>
                         <button class="btn btn-outline">
-                            <svg class="icon" style="width: 20px; height: 20px;">
-                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                <circle cx="12" cy="13" r="4"></circle>
+                            <svg class="icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                <circle cx="12" cy="13" r="4" />
                             </svg>
                             Add Receipt
                         </button>
                     </div>
                 </details>
-                
+
                 <button class="btn" onclick="saveTransaction()">Save Transaction</button>
             </div>
         </div>
@@ -1531,7 +1666,7 @@
                 screen.classList.remove('active');
             });
             document.getElementById(screenId).classList.add('active');
-            
+
             // Hide FAB on certain screens
             const fab = document.querySelector('.fab');
             if (screenId === 'landing' || screenId === 'email' || screenId === 'check-email') {
@@ -1565,28 +1700,28 @@
             if ('vibrate' in navigator) {
                 navigator.vibrate(50);
             }
-            
+
             hideAddTransaction();
-            
+
             // Show success message (you could add a toast notification here)
             console.log('Transaction saved!');
         }
 
         // Handle modal backdrop clicks
-        document.getElementById('add-transaction-modal').addEventListener('click', function(e) {
+        document.getElementById('add-transaction-modal').addEventListener('click', function (e) {
             if (e.target === this) {
                 hideAddTransaction();
             }
         });
 
         // Add touch feedback
-        document.addEventListener('touchstart', function(e) {
+        document.addEventListener('touchstart', function (e) {
             if (e.target.closest('.btn, .icon-btn, .nav-item, .quick-action, .category-item, .transaction-item')) {
                 e.target.style.opacity = '0.7';
             }
         });
 
-        document.addEventListener('touchend', function(e) {
+        document.addEventListener('touchend', function (e) {
             if (e.target.closest('.btn, .icon-btn, .nav-item, .quick-action, .category-item, .transaction-item')) {
                 e.target.style.opacity = '1';
             }
