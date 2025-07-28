@@ -74,18 +74,24 @@
 
             /* Dark Theme */
             :root[data-theme="dark"] {
-                --md-sys-color-primary: #D0BCFF;
-                --md-sys-color-on-primary: #381E72;
-                --md-sys-color-primary-container: #4F378B;
+                --md-sys-color-primary: #9CA3FF;
+                --md-sys-color-on-primary: #1A1B5E;
+                --md-sys-color-primary-container: #2E2F72;
                 --md-sys-color-on-primary-container: #EADDFF;
-                --md-sys-color-secondary: #CCC2DC;
-                --md-sys-color-on-secondary: #332D41;
-                --md-sys-color-secondary-container: #4A4458;
+                --md-sys-color-secondary: #A0A0D4;
+                --md-sys-color-on-secondary: #2A2541;
+                --md-sys-color-secondary-container: #3E3A58;
                 --md-sys-color-on-secondary-container: #E8DEF8;
-                --md-sys-color-tertiary: #FFB8D1;
-                --md-sys-color-on-tertiary: #5E1A45;
-                --md-sys-color-tertiary-container: #7A295D;
+                --md-sys-color-tertiary: #E8A0C4;
+                --md-sys-color-on-tertiary: #4E1A3C;
+                --md-sys-color-tertiary-container: #682A54;
                 --md-sys-color-on-tertiary-container: #FFE2EC;
+                /* Adjust brand colors for dark mode */
+                --brand-purple: #7C85FF;
+                --brand-purple-dark: #6B73E6;
+                --brand-purple-light: #9CA3FF;
+                --brand-violet: #A085E6;
+                --brand-gradient: linear-gradient(135deg, #7C85FF 0%, #9B82D4 100%);
                 --md-sys-color-error: #FFB4AB;
                 --md-sys-color-on-error: #690005;
                 --md-sys-color-error-container: #93000A;
@@ -891,12 +897,189 @@
                 width: 60%;
             }
 
-        /* Theme Toggle */
-        .theme-toggle {
+        /* Side Menu */
+        .side-menu {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--md-sys-color-surface);
+            transform: translateX(-100%);
+            transition: transform var(--motion-duration-medium) var(--motion-easing-emphasized);
+            z-index: 2000;
+            border-right: 1px solid var(--md-sys-color-outline-variant);
+            box-shadow: var(--elevation-4);
+        }
+
+            .side-menu.open {
+                transform: translateX(0);
+            }
+
+        .side-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--motion-duration-medium) var(--motion-easing-standard);
+            z-index: 1999;
+        }
+
+            .side-menu-overlay.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .side-menu-header {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            background: var(--brand-gradient);
+            color: white;
+        }
+
+        .side-menu-profile {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .side-menu-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .side-menu-user-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .side-menu-user-info p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .side-menu-content {
+            padding: var(--spacing-lg) 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .side-menu-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .side-menu-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface-variant);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0 var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .side-menu-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--md-sys-color-on-surface);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+            .side-menu-item:hover {
+                background: var(--md-sys-color-surface-variant);
+            }
+
+        .side-menu-item-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: var(--spacing-md);
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .side-menu-item-content {
+            flex: 1;
+        }
+
+        .side-menu-item-title {
+            font-weight: 500;
+        }
+
+        .side-menu-item-subtitle {
+            font-size: 12px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-top: 2px;
+        }
+
+        .side-menu-item-action {
+            margin-left: auto;
+        }
+
+        .side-menu-divider {
+            height: 1px;
+            background: var(--md-sys-color-outline-variant);
+            margin: var(--spacing-md) var(--spacing-lg);
+        }
+
+        /* Theme Toggle in Menu */
+        .theme-toggle-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .theme-toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: var(--md-sys-color-outline);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
+        }
+
+            .theme-toggle-switch.active {
+                background: var(--md-sys-color-primary);
+            }
+
+        .theme-toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: var(--md-sys-color-surface);
+            border-radius: 50%;
+            transition: transform var(--motion-duration-short) var(--motion-easing-standard);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .theme-toggle-switch.active .theme-toggle-thumb {
+            transform: translateX(24px);
         }
 
         /* Ripple Effect */
@@ -945,6 +1128,36 @@
             text-rendering: optimizeLegibility;
             -moz-osx-font-smoothing: grayscale;
             font-feature-settings: 'liga';
+        }
+
+        /* Tips & Insights Widget */
+        .tips-widget {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #7dd3fc;
+        }
+
+        .tips-widget-title {
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .tips-widget-content {
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.6;
+        }
+
+        /* Dark mode overrides for tips widget */
+        :root[data-theme="dark"] .tips-widget {
+            background: linear-gradient(135deg, #1e3a47 0%, #263238 100%);
+            border: 1px solid #37474f;
+        }
+
+        :root[data-theme="dark"] .tips-widget-title {
+            color: #e0f2f1;
+        }
+
+        :root[data-theme="dark"] .tips-widget-content {
+            color: #b0bec5;
         }
 
         /* Utilities */
@@ -999,10 +1212,117 @@
     </style>
 </head>
 <body>
-    <div class="theme-toggle">
-        <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle theme">
-            <span class="material-icons" id="theme-icon">dark_mode</span>
-        </button>
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <div class="side-menu-profile">
+                <div class="side-menu-avatar">H</div>
+                <div class="side-menu-user-info">
+                    <h3>Henry</h3>
+                    <p>henry@example.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-menu-content">
+            <div class="side-menu-section">
+                <div class="side-menu-section-title">Account</div>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">person</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Profile Settings</div>
+                        <div class="side-menu-item-subtitle">Manage your account</div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">security</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Privacy & Security</div>
+                        <div class="side-menu-item-subtitle">Data and login settings</div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">notifications</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Notifications</div>
+                        <div class="side-menu-item-subtitle">Email and push alerts</div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="side-menu-divider"></div>
+
+            <div class="side-menu-section">
+                <div class="side-menu-section-title">App Settings</div>
+                <button class="side-menu-item theme-toggle-menu" onclick="toggleThemeFromMenu()">
+                    <span class="material-icons side-menu-item-icon">palette</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Dark Mode</div>
+                        <div class="side-menu-item-subtitle">Switch appearance</div>
+                    </div>
+                    <div class="side-menu-item-action">
+                        <div class="theme-toggle-switch" id="themeSwitch">
+                            <div class="theme-toggle-thumb">
+                                <span class="material-icons" style="font-size: 12px;" id="themeSwitchIcon">light_mode</span>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">language</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Language</div>
+                        <div class="side-menu-item-subtitle">English (Canada)</div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">attach_money</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Currency</div>
+                        <div class="side-menu-item-subtitle">CAD ($)</div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="side-menu-divider"></div>
+
+            <div class="side-menu-section">
+                <div class="side-menu-section-title">Support</div>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">help</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Help Center</div>
+                        <div class="side-menu-item-subtitle">Get support</div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">feedback</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">Send Feedback</div>
+                        <div class="side-menu-item-subtitle">Help us improve</div>
+                    </div>
+                </button>
+                <button class="side-menu-item">
+                    <span class="material-icons side-menu-item-icon">info</span>
+                    <div class="side-menu-item-content">
+                        <div class="side-menu-item-title">About Abky</div>
+                        <div class="side-menu-item-subtitle">Version 1.0.0</div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="side-menu-divider"></div>
+
+            <button class="side-menu-item" style="color: var(--md-sys-color-error);">
+                <span class="material-icons side-menu-item-icon" style="color: var(--md-sys-color-error);">logout</span>
+                <div class="side-menu-item-content">
+                    <div class="side-menu-item-title">Sign Out</div>
+                </div>
+            </button>
+        </div>
     </div>
 
     <div class="app-container">
@@ -1144,7 +1464,7 @@
         <!-- Dashboard Screen -->
         <div id="dashboard" class="screen">
             <div class="header">
-                <button class="icon-btn">
+                <button class="icon-btn" onclick="openSideMenu()">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 6h18" />
                         <path d="M3 12h18" />
@@ -1539,7 +1859,7 @@
                     </div>
                     <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">$2,450 / $5,000</div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 49%; background: var(--md-sys-color-success);"></div>
+                        <div class="progress-fill" style="width: 49%; background: var(--md-sys-color-tertiary);"></div>
                     </div>
                     <div style="font-size: 13px; color: var(--md-sys-color-on-surface-variant);">49% complete • $2,550 to go</div>
                 </div>
@@ -1558,7 +1878,7 @@
                     </div>
                     <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">$890 / $2,000</div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 45%; background: var(--md-sys-color-primary);"></div>
+                        <div class="progress-fill" style="width: 45%; background: var(--md-sys-color-secondary);"></div>
                     </div>
                     <div style="font-size: 13px; color: var(--md-sys-color-on-surface-variant);">45% complete • 5 months left</div>
                 </div>
@@ -1577,19 +1897,19 @@
                     </div>
                     <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">$1,200 / $8,000</div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 15%; background: var(--md-sys-color-warning);"></div>
+                        <div class="progress-fill" style="width: 15%; background: var(--md-sys-color-primary);"></div>
                     </div>
                     <div style="font-size: 13px; color: var(--md-sys-color-on-surface-variant);">15% complete • $6,800 to go</div>
                 </div>
 
-                <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #7dd3fc;">
+                <div class="card tips-widget">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
                         <span style="font-size: 24px;" class="icon-lightbulb">
                             <span class="material-icons" style="font-size: 24px;">lightbulb</span>
                         </span>
-                        <div style="font-weight: 600; color: var(--md-sys-color-on-surface);">Tips & Insights</div>
+                        <div class="tips-widget-title">Tips & Insights</div>
                     </div>
-                    <div style="color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">"You saved $234 this month! That's 15% more than last month. Keep up the great work!"</div>
+                    <div class="tips-widget-content">"You saved $234 this month! That's 15% more than last month. Keep up the great work!"</div>
                 </div>
             </div>
             <div class="bottom-nav">
@@ -1709,21 +2029,49 @@
         // Initialize theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+        updateThemeSwitch(savedTheme);
 
-        // Theme toggle
-        function toggleTheme() {
+        // Side Menu Functions
+        function openSideMenu() {
+            document.getElementById('sideMenu').classList.add('open');
+            document.getElementById('sideMenuOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeSideMenu() {
+            document.getElementById('sideMenu').classList.remove('open');
+            document.getElementById('sideMenuOverlay').classList.remove('open');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Theme toggle from menu
+        function toggleThemeFromMenu() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+            updateThemeSwitch(newTheme);
         }
 
-        function updateThemeIcon(theme) {
-            const icon = document.getElementById('theme-icon');
-            icon.textContent = theme === 'light' ? 'dark_mode' : 'light_mode';
+        function updateThemeSwitch(theme) {
+            const themeSwitch = document.getElementById('themeSwitch');
+            const themeSwitchIcon = document.getElementById('themeSwitchIcon');
+
+            if (theme === 'dark') {
+                themeSwitch.classList.add('active');
+                themeSwitchIcon.textContent = 'dark_mode';
+            } else {
+                themeSwitch.classList.remove('active');
+                themeSwitchIcon.textContent = 'light_mode';
+            }
         }
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeSideMenu();
+            }
+        });
 
         // Screen navigation
         function showScreen(screenId) {
