@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Abky - Material Design Styled</title>
+    <title>Abky - MVP1 3-Bucket System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -42,6 +42,10 @@
             --md-sys-color-on-background: #1e293b;
             --md-sys-color-success: #10b981;
             --md-sys-color-warning: #f59e0b;
+            /* 3-Bucket System Colors - Low Saturation */
+            --bucket-core-living: #7aa08a; /* Low saturation green for essentials */
+            --bucket-present-self: #d4a574; /* Low saturation orange for happiness */
+            --bucket-future-self: #8b87d1; /* Low saturation purple for future */
             /* Material Design spacing */
             --spacing-xs: 4px;
             --spacing-sm: 8px;
@@ -106,6 +110,10 @@
                 --md-sys-color-on-background: #E6E0E9;
                 --md-sys-color-success: #7EDB93;
                 --md-sys-color-warning: #FFB780;
+                /* Bucket colors for dark mode - Low Saturation */
+                --bucket-core-living: #8db09d;
+                --bucket-present-self: #e6b887;
+                --bucket-future-self: #a199e4;
             }
 
         * {
@@ -1201,6 +1209,377 @@
             }
         }
 
+        /* Life Stage Selection */
+        .life-stage-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .life-stage-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+            .life-stage-option:hover {
+                background: var(--md-sys-color-secondary-container);
+                transform: translateY(-2px);
+            }
+
+            .life-stage-option.selected {
+                border-color: var(--md-sys-color-primary);
+                background: var(--md-sys-color-primary-container);
+            }
+
+        .life-stage-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--md-sys-color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+            .life-stage-icon .material-icons {
+                color: var(--md-sys-color-on-primary);
+                font-size: 16px;
+            }
+
+        .life-stage-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            margin: 0 0 2px 0;
+        }
+
+        .life-stage-content p {
+            font-size: 13px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* Bucket Allocation */
+        .bucket-card {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 2px solid transparent;
+        }
+
+        .bucket-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .bucket-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+            .bucket-icon.core-living,
+            .bucket-summary-icon.core-living {
+                background: var(--bucket-core-living);
+            }
+
+            .bucket-icon.present-self,
+            .bucket-summary-icon.present-self {
+                background: var(--bucket-present-self);
+            }
+
+            .bucket-icon.future-self,
+            .bucket-summary-icon.future-self {
+                background: var(--bucket-future-self);
+            }
+
+            .bucket-icon .material-icons {
+                color: white;
+                font-size: 16px;
+            }
+
+        .bucket-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            margin: 0 0 2px 0;
+        }
+
+        .bucket-info p {
+            font-size: 13px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .bucket-percentage {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-sys-color-primary);
+            margin-left: auto;
+        }
+
+        .bucket-progress-bar {
+            height: 6px;
+            background: var(--md-sys-color-outline-variant);
+            border-radius: 3px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .bucket-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+            .bucket-progress-fill.core-living {
+                background: var(--bucket-core-living);
+            }
+
+            .bucket-progress-fill.present-self {
+                background: var(--bucket-present-self);
+            }
+
+            .bucket-progress-fill.future-self {
+                background: var(--bucket-future-self);
+            }
+
+        .bucket-slider {
+            width: 100%;
+            height: 6px;
+            background: var(--md-sys-color-outline-variant);
+            border-radius: 3px;
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+            .bucket-slider::-webkit-slider-thumb {
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: var(--md-sys-color-primary);
+                cursor: pointer;
+                border: 2px solid white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .bucket-slider::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: var(--md-sys-color-primary);
+                cursor: pointer;
+                border: 2px solid white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+
+        .allocation-total {
+            background: var(--md-sys-color-primary-container);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+            .allocation-total.valid {
+                background: var(--md-sys-color-tertiary-container);
+            }
+
+            .allocation-total .total-percentage {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--md-sys-color-on-primary-container);
+            }
+
+            .allocation-total.valid .total-percentage {
+                color: var(--md-sys-color-on-tertiary-container);
+            }
+
+        /* Dashboard Bucket Summary */
+        .bucket-summary-card {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+            /* Special styling for bucket highlights message - match Goals page tips widget */
+            .bucket-summary-card.highlight {
+                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                border: 1px solid #7dd3fc;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Dark theme adjustments for highlight card */
+        [data-theme="dark"] .bucket-summary-card.highlight {
+            background: linear-gradient(135deg, #1e3a47 0%, #263238 100%);
+            border: 1px solid #37474f;
+        }
+
+        .bucket-summary-header {
+            margin-bottom: 20px;
+        }
+
+        .bucket-summary-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+            .bucket-summary-item:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+        .bucket-summary-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+            .bucket-summary-icon .material-icons {
+                color: white;
+                font-size: 24px;
+            }
+
+        .bucket-summary-info {
+            flex: 1;
+        }
+
+        .bucket-summary-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 4px;
+        }
+
+        .bucket-summary-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .bucket-summary-status {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-top: 4px;
+        }
+
+        /* Bucket Detail Cards */
+        .bucket-detail-card {
+            background: var(--md-sys-color-surface);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            box-shadow: var(--elevation-1);
+            transition: all var(--motion-duration-short) var(--motion-easing-standard);
+        }
+
+        .bucket-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .bucket-detail-info {
+            flex: 1;
+            margin-left: 16px;
+        }
+
+        .bucket-detail-description {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-top: 8px;
+        }
+
+        /* Transaction Modal Bucket Selection */
+        .bucket-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bucket-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+            .bucket-option:hover {
+                background: var(--md-sys-color-secondary-container);
+            }
+
+            .bucket-option.selected {
+                border-color: var(--md-sys-color-primary);
+                background: var(--md-sys-color-primary-container);
+            }
+
+        .bucket-option-info {
+            flex: 1;
+            margin-left: 16px;
+        }
+
+        .bucket-option-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 2px;
+        }
+
+        .bucket-option-desc {
+            font-size: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .bucket-option-check {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .bucket-option.selected .bucket-option-check {
+            opacity: 1;
+        }
+
+        .bucket-option-check .material-icons {
+            color: var(--md-sys-color-primary);
+            font-size: 24px;
+        }
+
         /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -1452,11 +1831,152 @@
                     <a href="#" style="color: var(--md-sys-color-primary); font-weight: 600; text-decoration: none;">Check spam folder</a>
                 </p>
 
-                <button class="btn" onclick="showScreen('dashboard')" style="margin-top: 40px; background: var(--md-sys-color-success);">
+                <button class="btn" onclick="showScreen('life-stage')" style="margin-top: 40px; background: var(--md-sys-color-success);">
                     <svg class="icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="20,6 9,17 4,12" />
                     </svg>
-                    Continue to Dashboard
+                    Verify & Continue
+                </button>
+            </div>
+        </div>
+
+        <!-- Life Stage Selection Screen -->
+        <div id="life-stage" class="screen">
+            <div class="header">
+                <button class="icon-btn" onclick="showScreen('check-email')">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h1 class="header-title">Welcome to Abky!</h1>
+                <div style="width: 40px;"></div>
+            </div>
+            <div class="content" style="padding-top: 20px;">
+                <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; text-align: center;">What describes your current situation?</h2>
+
+                <div class="life-stage-options" style="margin-top: 32px;">
+                    <div class="life-stage-option" onclick="selectLifeStage('student')">
+                        <div class="life-stage-icon">
+                            <span class="material-icons">school</span>
+                        </div>
+                        <div class="life-stage-content">
+                            <h3>Student (18-25)</h3>
+                            <p>Focus on essentials</p>
+                        </div>
+                    </div>
+
+                    <div class="life-stage-option" onclick="selectLifeStage('young-pro')">
+                        <div class="life-stage-icon">
+                            <span class="material-icons">work</span>
+                        </div>
+                        <div class="life-stage-content">
+                            <h3>Young Pro (25-35)</h3>
+                            <p>Building your life</p>
+                        </div>
+                    </div>
+
+                    <div class="life-stage-option" onclick="selectLifeStage('established')">
+                        <div class="life-stage-icon">
+                            <span class="material-icons">group</span>
+                        </div>
+                        <div class="life-stage-content">
+                            <h3>Established (35-50)</h3>
+                            <p>Peak earning years</p>
+                        </div>
+                    </div>
+
+                    <div class="life-stage-option" onclick="selectLifeStage('pre-retire')">
+                        <div class="life-stage-icon">
+                            <span class="material-icons">savings</span>
+                        </div>
+                        <div class="life-stage-content">
+                            <h3>Pre-Retire (50-65)</h3>
+                            <p>Serious saving mode</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 32px; padding: 16px; background: var(--md-sys-color-surface-variant); border-radius: 12px;">
+                    <span class="material-icons" style="color: var(--md-sys-color-primary); margin-bottom: 8px;">lightbulb</span>
+                    <p style="color: var(--md-sys-color-on-surface-variant); font-size: 14px;">Don't worry, you can adjust these anytime</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bucket Allocation Setup Screen -->
+        <div id="bucket-allocation" class="screen">
+            <div class="header">
+                <button class="icon-btn" onclick="showScreen('life-stage')">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h1 class="header-title">Your 3-Bucket System</h1>
+                <div style="width: 40px;"></div>
+            </div>
+            <div class="content" style="padding-top: 20px;">
+
+                <!-- Core Living Bucket -->
+                <div class="bucket-card">
+                    <div class="bucket-header">
+                        <div class="bucket-icon core-living">
+                            <span class="material-icons">home</span>
+                        </div>
+                        <div class="bucket-info">
+                            <h3>Core Living</h3>
+                            <p>Essential expenses</p>
+                        </div>
+                        <div class="bucket-percentage" id="core-percentage">60%</div>
+                    </div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill core-living" id="core-progress" style="width: 60%"></div>
+                    </div>
+                    <input type="range" class="bucket-slider" id="core-slider" min="30" max="80" value="60" oninput="updateBucketAllocation('core', this.value)">
+                </div>
+
+                <!-- Present Self Bucket -->
+                <div class="bucket-card">
+                    <div class="bucket-header">
+                        <div class="bucket-icon present-self">
+                            <span class="material-icons">shopping_bag</span>
+                        </div>
+                        <div class="bucket-info">
+                            <h3>Present Self</h3>
+                            <p>Happiness today</p>
+                        </div>
+                        <div class="bucket-percentage" id="present-percentage">25%</div>
+                    </div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill present-self" id="present-progress" style="width: 25%"></div>
+                    </div>
+                    <input type="range" class="bucket-slider" id="present-slider" min="10" max="50" value="25" oninput="updateBucketAllocation('present', this.value)">
+                </div>
+
+                <!-- Future Self Bucket -->
+                <div class="bucket-card">
+                    <div class="bucket-header">
+                        <div class="bucket-icon future-self">
+                            <span class="material-icons">rocket_launch</span>
+                        </div>
+                        <div class="bucket-info">
+                            <h3>Future Self</h3>
+                            <p>Building tomorrow</p>
+                        </div>
+                        <div class="bucket-percentage" id="future-percentage">15%</div>
+                    </div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill future-self" id="future-progress" style="width: 15%"></div>
+                    </div>
+                    <input type="range" class="bucket-slider" id="future-slider" min="5" max="40" value="15" oninput="updateBucketAllocation('future', this.value)">
+                </div>
+
+                <!-- Total Allocation -->
+                <div class="allocation-total valid" id="allocation-total">
+                    <p style="margin: 0; color: var(--md-sys-color-on-tertiary-container); font-size: 16px;">Total: <span class="total-percentage" id="total-percentage">100%</span></p>
+                    <div style="display: flex; align-items: center; justify-content: center; margin-top: 8px;">
+                        <span class="material-icons" style="color: var(--md-sys-color-on-tertiary-container); margin-right: 8px;">check_circle</span>
+                        <span style="color: var(--md-sys-color-on-tertiary-container); font-size: 14px;">Perfect balance!</span>
+                    </div>
+                </div>
+
+                <button class="btn" id="start-tracking-btn" onclick="showScreen('dashboard')" style="margin-top: 24px; width: 100%;">
+                    Start Tracking
                 </button>
             </div>
         </div>
@@ -1493,15 +2013,51 @@
                 <div style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">Good morning, Henry!</div>
                 <div style="color: var(--md-sys-color-on-surface-variant); margin-bottom: 24px;">Friday, July 26</div>
 
-                <div class="summary-card">
-                    <div class="summary-label">This Month</div>
-                    <div class="summary-amount">$1,247 / $2,000</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 62%"></div>
+                <div class="bucket-summary-card">
+
+                    <!-- Core Living Bucket -->
+                    <div class="bucket-summary-item">
+                        <div class="bucket-summary-icon core-living">
+                            <span class="material-icons">home</span>
+                        </div>
+                        <div class="bucket-summary-info">
+                            <div class="bucket-summary-name">Core Living</div>
+                            <div class="bucket-summary-amount">$2,100/$2,400 (87%)</div>
+                            <div class="bucket-progress-bar">
+                                <div class="bucket-progress-fill core-living" style="width: 87%"></div>
+                            </div>
+                            <div class="bucket-summary-status">Essential expenses</div>
+                        </div>
                     </div>
-                    <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
-                        <span>$753 remaining</span>
-                        <span style="font-size: 14px; opacity: 0.9;">12 days left</span>
+
+                    <!-- Present Self Bucket -->
+                    <div class="bucket-summary-item">
+                        <div class="bucket-summary-icon present-self">
+                            <span class="material-icons">shopping_bag</span>
+                        </div>
+                        <div class="bucket-summary-info">
+                            <div class="bucket-summary-name">Present Self</div>
+                            <div class="bucket-summary-amount">$875/$800 (109%)</div>
+                            <div class="bucket-progress-bar">
+                                <div class="bucket-progress-fill present-self" style="width: 100%"></div>
+                            </div>
+                            <div class="bucket-summary-status" style="color: var(--md-sys-color-warning);">$75 over</div>
+                        </div>
+                    </div>
+
+                    <!-- Future Self Bucket -->
+                    <div class="bucket-summary-item">
+                        <div class="bucket-summary-icon future-self">
+                            <span class="material-icons">rocket_launch</span>
+                        </div>
+                        <div class="bucket-summary-info">
+                            <div class="bucket-summary-name">Future Self</div>
+                            <div class="bucket-summary-amount">$425/$600 (71%)</div>
+                            <div class="bucket-progress-bar">
+                                <div class="bucket-progress-fill future-self" style="width: 71%"></div>
+                            </div>
+                            <div class="bucket-summary-status">$175 to go</div>
+                        </div>
                     </div>
                 </div>
 
@@ -1516,7 +2072,7 @@
                         <div class="quick-action-icon">
                             <span class="material-icons">pie_chart</span>
                         </div>
-                        <div class="quick-action-label">View Budget</div>
+                        <div class="quick-action-label">View Buckets</div>
                     </div>
                     <div class="quick-action" onclick="showScreen('goals')">
                         <div class="quick-action-icon">
@@ -1581,7 +2137,7 @@
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
                     <span class="material-icons nav-icon">pie_chart</span>
-                    <span>Budget</span>
+                    <span>Buckets</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
                     <span class="material-icons nav-icon">trending_up</span>
@@ -1692,7 +2248,7 @@
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
                     <span class="material-icons nav-icon">pie_chart</span>
-                    <span>Budget</span>
+                    <span>Buckets</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
                     <span class="material-icons nav-icon">trending_up</span>
@@ -1713,7 +2269,7 @@
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                 </button>
-                <h1 class="header-title">Budget</h1>
+                <h1 class="header-title">Buckets</h1>
                 <div class="header-actions">
                     <button class="icon-btn">
                         <span class="material-icons">edit</span>
@@ -1726,83 +2282,83 @@
             <div class="content">
                 <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 24px;">
                     <button class="icon-btn">
-                        <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
+                        <span class="material-icons">chevron_left</span>
                     </button>
                     <span style="margin: 0 20px; font-size: 18px; font-weight: 600;">July 2024</span>
                     <button class="icon-btn">
-                        <svg class="icon" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
+                        <span class="material-icons">chevron_right</span>
                     </button>
                 </div>
 
-                <div class="summary-card" style="text-align: center;">
-                    <div class="summary-amount">$1,247 / $2,000</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 62%"></div>
-                    </div>
-                    <div style="margin-top: 16px; font-size: 18px;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
-                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                        You're on track!
-                    </div>
-                    <div style="opacity: 0.9;">$753 left (12 days)</div>
-                </div>
-
-                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Categories</h3>
-
-                <div class="budget-category">
-                    <div class="budget-header">
-                        <div class="budget-info">
-                            <span class="budget-icon icon-food">
-                                <span class="material-icons">restaurant</span>
-                            </span>
-                            <span class="budget-name">Food</span>
+                <div class="bucket-summary-card highlight">
+                    <div class="bucket-summary-header">
+                        <div class="summary-label">3-Bucket Balance</div>
+                        <div style="color: var(--md-sys-color-on-surface-variant); font-size: 14px;">Monthly Budget: $4,000</div>
+                        <div style="color: var(--md-sys-color-on-surface-variant); font-size: 14px;">Spent: $3,400 (85%) • Remaining: $600</div>
+                        <div style="margin-top: 12px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #2e7d32; margin-right: 8px;">lightbulb</span>
+                            <span style="color: #2e7d32; font-weight: 600;">Great balance across all three buckets!</span>
                         </div>
-                        <span class="budget-amount">$347/$400</span>
                     </div>
-                    <div class="budget-progress">
-                        <div class="budget-fill warning" style="width: 87%"></div>
-                    </div>
-                    <div class="budget-meta">87% used • $53 remaining</div>
                 </div>
 
-                <div class="budget-category">
-                    <div class="budget-header">
-                        <div class="budget-info">
-                            <span class="budget-icon icon-transport">
-                                <span class="material-icons">directions_bus</span>
-                            </span>
-                            <span class="budget-name">Transport</span>
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Bucket Details</h3>
+
+                <!-- Core Living Bucket Detail -->
+                <div class="bucket-detail-card">
+                    <div class="bucket-detail-header">
+                        <div class="bucket-summary-icon core-living">
+                            <span class="material-icons">home</span>
                         </div>
-                        <span class="budget-amount">$185/$300</span>
-                    </div>
-                    <div class="budget-progress">
-                        <div class="budget-fill safe" style="width: 62%"></div>
-                    </div>
-                    <div class="budget-meta">62% used • $115 remaining</div>
-                </div>
-
-                <div class="budget-category">
-                    <div class="budget-header">
-                        <div class="budget-info">
-                            <span class="budget-icon icon-entertainment">
-                                <span class="material-icons">movie</span>
-                            </span>
-                            <span class="budget-name">Entertainment</span>
+                        <div class="bucket-detail-info">
+                            <div class="bucket-summary-name">Core Living</div>
+                            <div class="bucket-summary-amount">$2,100/$2,400 (87%)</div>
                         </div>
-                        <span class="budget-amount">$45/$100</span>
+                        <span class="material-icons" style="color: var(--md-sys-color-success);">check_circle</span>
                     </div>
-                    <div class="budget-progress">
-                        <div class="budget-fill safe" style="width: 45%"></div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill core-living" style="width: 87%"></div>
                     </div>
-                    <div class="budget-meta">45% used • $55 remaining</div>
+                    <div class="bucket-detail-description">Housing, food, transport</div>
                 </div>
 
-                <button class="btn btn-secondary mt-2">View All Categories</button>
+                <!-- Present Self Bucket Detail -->
+                <div class="bucket-detail-card">
+                    <div class="bucket-detail-header">
+                        <div class="bucket-summary-icon present-self">
+                            <span class="material-icons">shopping_bag</span>
+                        </div>
+                        <div class="bucket-detail-info">
+                            <div class="bucket-summary-name">Present Self</div>
+                            <div class="bucket-summary-amount">$875/$800 (109%)</div>
+                        </div>
+                        <span class="material-icons" style="color: var(--md-sys-color-warning);">warning</span>
+                    </div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill present-self" style="width: 100%"></div>
+                    </div>
+                    <div class="bucket-detail-description">Dining, entertainment • $75 over</div>
+                </div>
+
+                <!-- Future Self Bucket Detail -->
+                <div class="bucket-detail-card">
+                    <div class="bucket-detail-header">
+                        <div class="bucket-summary-icon future-self">
+                            <span class="material-icons">rocket_launch</span>
+                        </div>
+                        <div class="bucket-detail-info">
+                            <div class="bucket-summary-name">Future Self</div>
+                            <div class="bucket-summary-amount">$425/$600 (71%)</div>
+                        </div>
+                        <span class="material-icons" style="color: var(--md-sys-color-primary);">trending_up</span>
+                    </div>
+                    <div class="bucket-progress-bar">
+                        <div class="bucket-progress-fill future-self" style="width: 71%"></div>
+                    </div>
+                    <div class="bucket-detail-description">Savings, investments • Building up</div>
+                </div>
+
+                <button class="btn btn-secondary mt-2">Adjust Allocations</button>
             </div>
             <div class="bottom-nav">
                 <div class="nav-item" onclick="showScreen('dashboard')">
@@ -1815,7 +2371,7 @@
                 </div>
                 <div class="nav-item active">
                     <span class="material-icons nav-icon">pie_chart</span>
-                    <span>Budget</span>
+                    <span>Buckets</span>
                 </div>
                 <div class="nav-item" onclick="showScreen('goals')">
                     <span class="material-icons nav-icon">trending_up</span>
@@ -1923,7 +2479,7 @@
                 </div>
                 <div class="nav-item" onclick="showScreen('budget')">
                     <span class="material-icons nav-icon">pie_chart</span>
-                    <span>Budget</span>
+                    <span>Buckets</span>
                 </div>
                 <div class="nav-item active">
                     <span class="material-icons nav-icon">trending_up</span>
@@ -1963,7 +2519,49 @@
                 </div>
 
                 <div class="input-group">
-                    <label class="input-label">Category</label>
+                    <label class="input-label">Which bucket?</label>
+                    <div class="bucket-selection">
+                        <div class="bucket-option" onclick="selectBucket(this, 'core')" data-bucket="core">
+                            <div class="bucket-icon core-living">
+                                <span class="material-icons">home</span>
+                            </div>
+                            <div class="bucket-option-info">
+                                <div class="bucket-option-name">Core Living</div>
+                                <div class="bucket-option-desc">Essential expenses</div>
+                            </div>
+                            <div class="bucket-option-check">
+                                <span class="material-icons">check_circle</span>
+                            </div>
+                        </div>
+                        <div class="bucket-option" onclick="selectBucket(this, 'present')" data-bucket="present">
+                            <div class="bucket-icon present-self">
+                                <span class="material-icons">shopping_bag</span>
+                            </div>
+                            <div class="bucket-option-info">
+                                <div class="bucket-option-name">Present Self</div>
+                                <div class="bucket-option-desc">Happiness today</div>
+                            </div>
+                            <div class="bucket-option-check">
+                                <span class="material-icons">check_circle</span>
+                            </div>
+                        </div>
+                        <div class="bucket-option" onclick="selectBucket(this, 'future')" data-bucket="future">
+                            <div class="bucket-icon future-self">
+                                <span class="material-icons">rocket_launch</span>
+                            </div>
+                            <div class="bucket-option-info">
+                                <div class="bucket-option-name">Future Self</div>
+                                <div class="bucket-option-desc">Building tomorrow</div>
+                            </div>
+                            <div class="bucket-option-check">
+                                <span class="material-icons">check_circle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Category within bucket</label>
                     <div class="category-grid">
                         <div class="category-item" onclick="selectCategory(this)">
                             <div class="category-icon icon-food">
@@ -2082,7 +2680,7 @@
 
             // Hide FAB on certain screens
             const fab = document.querySelector('.fab');
-            if (screenId === 'landing' || screenId === 'email' || screenId === 'check-email') {
+            if (screenId === 'landing' || screenId === 'email' || screenId === 'check-email' || screenId === 'life-stage' || screenId === 'bucket-allocation') {
                 fab.style.display = 'none';
             } else {
                 fab.style.display = 'flex';
@@ -2097,6 +2695,14 @@
 
         function hideAddTransaction() {
             document.getElementById('add-transaction-modal').classList.remove('show');
+        }
+
+        // Bucket selection in transaction modal
+        function selectBucket(element, bucketType) {
+            document.querySelectorAll('.bucket-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
         }
 
         // Category selection
@@ -2165,6 +2771,106 @@
                 e.target.style.opacity = '1';
             }
         });
+
+        // Life Stage Selection
+        let selectedLifeStage = null;
+        let bucketAllocations = {
+            core: 60,
+            present: 25,
+            future: 15
+        };
+
+        function selectLifeStage(stage) {
+            selectedLifeStage = stage;
+
+            // Remove previous selection
+            document.querySelectorAll('.life-stage-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Add selection to clicked option
+            event.target.closest('.life-stage-option').classList.add('selected');
+
+            // Set default allocations based on life stage
+            switch (stage) {
+                case 'student':
+                    bucketAllocations = { core: 70, present: 25, future: 5 };
+                    break;
+                case 'young-pro':
+                    bucketAllocations = { core: 60, present: 25, future: 15 };
+                    break;
+                case 'established':
+                    bucketAllocations = { core: 55, present: 20, future: 25 };
+                    break;
+                case 'pre-retire':
+                    bucketAllocations = { core: 50, present: 20, future: 30 };
+                    break;
+            }
+
+            // Navigate to bucket allocation
+            setTimeout(() => {
+                showScreen('bucket-allocation');
+                updateBucketDisplay();
+            }, 500);
+        }
+
+        // Bucket Allocation Functions
+        function updateBucketAllocation(bucket, value) {
+            bucketAllocations[bucket] = parseInt(value);
+
+            // Auto-adjust other buckets to maintain 100% total
+            const total = Object.values(bucketAllocations).reduce((sum, val) => sum + val, 0);
+
+            if (total !== 100) {
+                // Simple rebalancing - adjust the other two buckets proportionally
+                const otherBuckets = Object.keys(bucketAllocations).filter(key => key !== bucket);
+                const remaining = 100 - bucketAllocations[bucket];
+                const currentOtherTotal = otherBuckets.reduce((sum, key) => sum + bucketAllocations[key], 0);
+
+                if (currentOtherTotal > 0) {
+                    otherBuckets.forEach(key => {
+                        bucketAllocations[key] = Math.round((bucketAllocations[key] / currentOtherTotal) * remaining);
+                    });
+                }
+            }
+
+            updateBucketDisplay();
+        }
+
+        function updateBucketDisplay() {
+            // Update percentages
+            document.getElementById('core-percentage').textContent = bucketAllocations.core + '%';
+            document.getElementById('present-percentage').textContent = bucketAllocations.present + '%';
+            document.getElementById('future-percentage').textContent = bucketAllocations.future + '%';
+
+            // Update progress bars
+            document.getElementById('core-progress').style.width = bucketAllocations.core + '%';
+            document.getElementById('present-progress').style.width = bucketAllocations.present + '%';
+            document.getElementById('future-progress').style.width = bucketAllocations.future + '%';
+
+            // Update sliders
+            document.getElementById('core-slider').value = bucketAllocations.core;
+            document.getElementById('present-slider').value = bucketAllocations.present;
+            document.getElementById('future-slider').value = bucketAllocations.future;
+
+            // Update total
+            const total = Object.values(bucketAllocations).reduce((sum, val) => sum + val, 0);
+            document.getElementById('total-percentage').textContent = total + '%';
+
+            // Update total styling
+            const totalElement = document.getElementById('allocation-total');
+            const startButton = document.getElementById('start-tracking-btn');
+
+            if (total === 100) {
+                totalElement.classList.add('valid');
+                startButton.disabled = false;
+                startButton.style.opacity = '1';
+            } else {
+                totalElement.classList.remove('valid');
+                startButton.disabled = true;
+                startButton.style.opacity = '0.5';
+            }
+        }
 
         // Initialize
         showScreen('landing');
