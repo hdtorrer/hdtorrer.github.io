@@ -918,6 +918,8 @@
             z-index: 2000;
             border-right: 1px solid var(--md-sys-color-outline-variant);
             box-shadow: var(--elevation-4);
+            display: flex;
+            flex-direction: column;
         }
 
             .side-menu.open {
@@ -2013,6 +2015,22 @@
                 <div style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">Good morning, Henry!</div>
                 <div style="color: var(--md-sys-color-on-surface-variant); margin-bottom: 24px;">Friday, July 26</div>
 
+                <!-- Monthly Summary Card -->
+                <div class="card monthly-summary-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                        <span class="material-icons" style="color: var(--md-sys-color-primary); margin-right: 8px; font-size: 20px;">account_balance_wallet</span>
+                        <div style="font-weight: 600; font-size: 16px;">July Spending:</div>
+                    </div>
+                    <div style="font-size: 24px; font-weight: 700; margin-bottom: 12px;">$3,400 / $4,800 <span style="color: var(--md-sys-color-primary); font-size: 18px;">(71%)</span></div>
+                    <div class="monthly-progress-bar" style="height: 8px; background: var(--md-sys-color-outline-variant); border-radius: 4px; overflow: hidden; margin-bottom: 12px;">
+                        <div style="height: 100%; width: 71%; background: linear-gradient(90deg, var(--md-sys-color-primary), var(--md-sys-color-secondary)); border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 14px; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center;">
+                        <span class="material-icons" style="font-size: 16px; margin-right: 4px;">schedule</span>
+                        12 days remaining
+                    </div>
+                </div>
+
                 <div class="bucket-summary-card">
 
                     <!-- Core Living Bucket -->
@@ -2061,32 +2079,6 @@
                     </div>
                 </div>
 
-                <div class="quick-actions">
-                    <div class="quick-action" onclick="showAddTransaction()">
-                        <div class="quick-action-icon">
-                            <span class="material-icons">add</span>
-                        </div>
-                        <div class="quick-action-label">Add Transaction</div>
-                    </div>
-                    <div class="quick-action" onclick="showScreen('budget')">
-                        <div class="quick-action-icon">
-                            <span class="material-icons">pie_chart</span>
-                        </div>
-                        <div class="quick-action-label">View Buckets</div>
-                    </div>
-                    <div class="quick-action" onclick="showScreen('goals')">
-                        <div class="quick-action-icon">
-                            <span class="material-icons">trending_up</span>
-                        </div>
-                        <div class="quick-action-label">Check Goals</div>
-                    </div>
-                    <div class="quick-action" onclick="showScreen('transactions')">
-                        <div class="quick-action-icon">
-                            <span class="material-icons">list</span>
-                        </div>
-                        <div class="quick-action-label">View All</div>
-                    </div>
-                </div>
 
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="font-size: 18px; font-weight: 600;">Recent Transactions</h3>
@@ -2290,15 +2282,25 @@
                     </button>
                 </div>
 
-                <div class="bucket-summary-card highlight">
-                    <div class="bucket-summary-header">
-                        <div class="summary-label">3-Bucket Balance</div>
-                        <div style="color: var(--md-sys-color-on-surface-variant); font-size: 14px;">Monthly Budget: $4,000</div>
-                        <div style="color: var(--md-sys-color-on-surface-variant); font-size: 14px;">Spent: $3,400 (85%) • Remaining: $600</div>
-                        <div style="margin-top: 12px; display: flex; align-items: center; justify-content: center;">
-                            <span class="material-icons" style="color: #2e7d32; margin-right: 8px;">lightbulb</span>
-                            <span style="color: #2e7d32; font-weight: 600;">Great balance across all three buckets!</span>
-                        </div>
+                <!-- Monthly Summary Card for Buckets Screen -->
+                <div class="card monthly-summary-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                        <span class="material-icons" style="color: var(--md-sys-color-primary); margin-right: 8px; font-size: 20px;">account_balance_wallet</span>
+                        <div style="font-weight: 600; font-size: 16px;">July Spending:</div>
+                    </div>
+                    <div style="font-size: 24px; font-weight: 700; margin-bottom: 12px;">$3,400 / $4,800 <span style="color: var(--md-sys-color-primary); font-size: 18px;">(71%)</span></div>
+                    <div class="monthly-progress-bar" style="height: 8px; background: var(--md-sys-color-outline-variant); border-radius: 4px; overflow: hidden; margin-bottom: 16px;">
+                        <div style="height: 100%; width: 71%; background: linear-gradient(90deg, var(--md-sys-color-primary), var(--md-sys-color-secondary)); border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 14px; color: var(--md-sys-color-on-surface-variant); display: flex; align-items: center; margin-bottom: 16px;">
+                        <span class="material-icons" style="font-size: 16px; margin-right: 4px;">schedule</span>
+                        12 days remaining
+                    </div>
+
+                    <!-- Insight Message -->
+                    <div style="background: var(--md-sys-color-tertiary-container); border-radius: 12px; padding: 12px; display: flex; align-items: center;">
+                        <span class="material-icons" style="color: var(--md-sys-color-on-tertiary-container); margin-right: 8px; font-size: 20px;">lightbulb</span>
+                        <div style="color: var(--md-sys-color-on-tertiary-container); font-weight: 500;">Great balance across all three buckets!</div>
                     </div>
                 </div>
 
@@ -2633,13 +2635,21 @@
         function openSideMenu() {
             document.getElementById('sideMenu').classList.add('open');
             document.getElementById('sideMenuOverlay').classList.add('open');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            // Prevent background scrolling on main content only
+            const mainContent = document.querySelector('.phone-container');
+            if (mainContent) {
+                mainContent.style.overflow = 'hidden';
+            }
         }
 
         function closeSideMenu() {
             document.getElementById('sideMenu').classList.remove('open');
             document.getElementById('sideMenuOverlay').classList.remove('open');
-            document.body.style.overflow = ''; // Restore scrolling
+            // Restore scrolling on main content
+            const mainContent = document.querySelector('.phone-container');
+            if (mainContent) {
+                mainContent.style.overflow = '';
+            }
         }
 
         // Theme toggle from menu
