@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abky - 3-Bucket System Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* Page setup for printing */
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        .page {
+            width: 297mm;
+            height: 210mm;
+            padding: 20mm;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: #fff;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 48pt;
+            font-weight: 800;
+            color: #6366f1;
+            margin-bottom: 20pt;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 36pt;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16pt;
+        }
+
+        h3 {
+            font-size: 24pt;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 12pt;
+        }
+
+        p {
+            font-size: 16pt;
+            color: #4b5563;
+            margin-bottom: 12pt;
+        }
+
+        .subtitle {
+            font-size: 20pt;
+            color: #8b5cf6;
+            font-weight: 500;
+            margin-bottom: 24pt;
+        }
+
+        /* Layout components */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20pt;
+            margin-top: 30pt;
+        }
+
+        .bucket-box {
+            border: 2pt solid #e5e7eb;
+            border-radius: 12pt;
+            padding: 20pt;
+            text-align: center;
+        }
+
+        .bucket-box.core {
+            border-color: #7aa08a;
+            background: rgba(122, 160, 138, 0.05);
+        }
+
+        .bucket-box.present {
+            border-color: #d4a574;
+            background: rgba(212, 165, 116, 0.05);
+        }
+
+        .bucket-box.future {
+            border-color: #8aa0d4;
+            background: rgba(138, 160, 212, 0.05);
+        }
+
+        .bucket-icon {
+            font-size: 48pt;
+            margin-bottom: 12pt;
+        }
+
+        .bucket-box.core .bucket-icon { color: #7aa08a; }
+        .bucket-box.present .bucket-icon { color: #d4a574; }
+        .bucket-box.future .bucket-icon { color: #8aa0d4; }
+
+        .percentage {
+            font-size: 32pt;
+            font-weight: 800;
+            margin-top: 12pt;
+            opacity: 0.8;
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin: 20pt 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16pt;
+            font-size: 16pt;
+        }
+
+        .feature-list .material-icons {
+            color: #6366f1;
+            margin-right: 12pt;
+            font-size: 24pt;
+            flex-shrink: 0;
+        }
+
+        /* Visual elements */
+        .logo {
+            font-size: 72pt;
+            font-weight: 800;
+            color: #6366f1;
+            margin-bottom: 20pt;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 10mm;
+            right: 20mm;
+            color: #9ca3af;
+            font-size: 10pt;
+        }
+
+        /* Feature grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20pt;
+            margin-top: 20pt;
+        }
+
+        .feature-card {
+            border: 1pt solid #e5e7eb;
+            border-radius: 8pt;
+            padding: 16pt;
+        }
+
+        .feature-card h4 {
+            font-size: 18pt;
+            color: #1f2937;
+            margin-bottom: 8pt;
+            display: flex;
+            align-items: center;
+            gap: 8pt;
+        }
+
+        .feature-card .material-icons {
+            color: #6366f1;
+            font-size: 24pt;
+        }
+
+        .feature-card p {
+            font-size: 14pt;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Call to action */
+        .cta-box {
+            background: #6366f1;
+            color: white;
+            padding: 30pt;
+            border-radius: 12pt;
+            text-align: center;
+            margin-top: 30pt;
+        }
+
+        .cta-box h3 {
+            color: white;
+            font-size: 28pt;
+            margin-bottom: 16pt;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18pt;
+        }
+
+        /* Print optimization */
+        @media print {
+            body {
+                margin: 0;
+                color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Screen preview */
+        @media screen {
+            body {
+                background: #f3f4f6;
+                padding: 20px;
+            }
+
+            .page {
+                margin: 0 auto 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                max-width: 1200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Title -->
+    <div class="page">
+        <div style="text-align: center;">
+            <div class="logo">Abky</div>
+            <h1>The 3-Bucket System</h1>
+            <p class="subtitle">A balanced approach to personal finance for Canadians</p>
+            <p style="font-size: 18pt; margin-top: 40pt;">Initial User Testing Presentation</p>
+        </div>
+        <div class="page-number">1</div>
+    </div>
+
+    <!-- Page 2: The Problem -->
+    <div class="page">
+        <h2>The Problem with Traditional Budgeting</h2>
+        <ul class="feature-list">
+            <li>
+                <span class="material-icons">close</span>
+                <span><strong>Too Restrictive:</strong> Traditional budgets feel like financial diets - unsustainable and guilt-inducing</span>
+            </li>
+            <li>
+                <span class="material-icons">close</span>
+                <span><strong>Too Complex:</strong> Dozens of categories to track, making it overwhelming to maintain</span>
+            </li>
+            <li>
+                <span class="material-icons">close</span>
+                <span><strong>No Balance:</strong> Focus only on cutting costs, not on living a fulfilling life</span>
+            </li>
+            <li>
+                <span class="material-icons">close</span>
+                <span><strong>Guilt-Driven:</strong> Makes you feel bad about spending on things that bring joy</span>
+            </li>
+        </ul>
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- Page 3: Our Philosophy -->
+    <div class="page">
+        <h2>The Abky Philosophy</h2>
+        <p class="subtitle">Money is a tool for living a balanced, fulfilling life</p>
+        <ul class="feature-list">
+            <li>
+                <span class="material-icons">check_circle</span>
+                <span><strong>Balance Over Restriction:</strong> Your financial plan should enhance your life, not limit it</span>
+            </li>
+            <li>
+                <span class="material-icons">check_circle</span>
+                <span><strong>Present Joy Matters:</strong> Happiness today is as important as security tomorrow</span>
+            </li>
+            <li>
+                <span class="material-icons">check_circle</span>
+                <span><strong>Simple Systems Win:</strong> Complexity kills consistency - keep it simple</span>
+            </li>
+            <li>
+                <span class="material-icons">check_circle</span>
+                <span><strong>No Guilt Allowed:</strong> Every dollar has a purpose, including fun</span>
+            </li>
+        </ul>
+        <div class="page-number">3</div>
+    </div>
+
+    <!-- Page 4: The 3-Bucket System -->
+    <div class="page">
+        <h2>Introducing the 3-Bucket System</h2>
+        <p class="subtitle">Simple. Balanced. Sustainable.</p>
+        <div class="content-grid">
+            <div class="bucket-box core">
+                <span class="material-icons bucket-icon">home</span>
+                <h3>Core Living</h3>
+                <p>Essentials for daily life</p>
+                <ul style="text-align: left; list-style: none; font-size: 14pt; color: #4b5563;">
+                    <li>• Rent/Mortgage</li>
+                    <li>• Groceries</li>
+                    <li>• Utilities</li>
+                    <li>• Transportation</li>
+                </ul>
+                <div class="percentage">50-60%</div>
+            </div>
+            <div class="bucket-box present">
+                <span class="material-icons bucket-icon">celebration</span>
+                <h3>Present Self</h3>
+                <p>Joy and experiences</p>
+                <ul style="text-align: left; list-style: none; font-size: 14pt; color: #4b5563;">
+                    <li>• Dining out</li>
+                    <li>• Entertainment</li>
+                    <li>• Hobbies</li>
+                    <li>• Self-care</li>
+                </ul>
+                <div class="percentage">20-30%</div>
+            </div>
+            <div class="bucket-box future">
+                <span class="material-icons bucket-icon">savings</span>
+                <h3>Future Self</h3>
+                <p>Security and goals</p>
+                <ul style="text-align: left; list-style: none; font-size: 14pt; color: #4b5563;">
+                    <li>• Emergency fund</li>
+                    <li>• Savings goals</li>
+                    <li>• TFSA/RRSP</li>
+                    <li>• Investments</li>
+                </ul>
+                <div class="percentage">20-30%</div>
+            </div>
+        </div>
+        <div class="page-number">4</div>
+    </div>
+
+    <!-- Page 5: How It Works -->
+    <div class="page">
+        <h2>How Abky Makes It Easy</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><span class="material-icons">speed</span> Quick Entry</h4>
+                <p>Add transactions in seconds. Abky automatically sorts them into the right bucket.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">pie_chart</span> Visual Dashboard</h4>
+                <p>See your bucket balance at a glance with beautiful, intuitive charts.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">tune</span> Flexible Ratios</h4>
+                <p>Adjust your bucket percentages as your life changes. No rigid rules.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">insights</span> Smart Insights</h4>
+                <p>Get helpful suggestions without judgment. Celebrate wins, adjust gently.</p>
+            </div>
+        </div>
+        <div class="page-number">5</div>
+    </div>
+
+    <!-- Page 6: Canadian First -->
+    <div class="page">
+        <h2>Built for Canadians</h2>
+        <ul class="feature-list">
+            <li>
+                <span class="material-icons">account_balance</span>
+                <span><strong>Canadian Banking:</strong> Designed to work with all major Canadian banks</span>
+            </li>
+            <li>
+                <span class="material-icons">attach_money</span>
+                <span><strong>CAD Native:</strong> All amounts in Canadian dollars, no conversion confusion</span>
+            </li>
+            <li>
+                <span class="material-icons">receipt_long</span>
+                <span><strong>Tax Aware:</strong> Tracks categories relevant for Canadian tax returns</span>
+            </li>
+            <li>
+                <span class="material-icons">account_balance_wallet</span>
+                <span><strong>TFSA & RRSP:</strong> Special handling for Canadian retirement accounts</span>
+            </li>
+            <li>
+                <span class="material-icons">security</span>
+                <span><strong>Privacy First:</strong> Your data stays in Canada, protected by Canadian privacy laws</span>
+            </li>
+        </ul>
+        <div class="page-number">6</div>
+    </div>
+
+    <!-- Page 7: Early Access Benefits -->
+    <div class="page">
+        <h2>Join as an Early Tester</h2>
+        <p class="subtitle">Help shape the future of personal finance in Canada</p>
+        <ul class="feature-list">
+            <li>
+                <span class="material-icons">card_giftcard</span>
+                <span><strong>Free During Beta:</strong> Full access to all features at no cost</span>
+            </li>
+            <li>
+                <span class="material-icons">forum</span>
+                <span><strong>Direct Input:</strong> Your feedback shapes features and priorities</span>
+            </li>
+            <li>
+                <span class="material-icons">star</span>
+                <span><strong>Lifetime Discount:</strong> 50% off forever when we officially launch</span>
+            </li>
+            <li>
+                <span class="material-icons">group</span>
+                <span><strong>Exclusive Community:</strong> Connect with other early adopters</span>
+            </li>
+        </ul>
+        <div class="cta-box">
+            <h3>Ready to Transform Your Finances?</h3>
+            <p>Visit app.abky.ca to start your free trial</p>
+        </div>
+        <div class="page-number">7</div>
+    </div>
+
+    <!-- Page 8: Roadmap -->
+    <div class="page">
+        <h2>What's Coming Next</h2>
+        <p class="subtitle">Our roadmap based on user feedback</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><span class="material-icons">sync</span> Bank Sync (Q1 2025)</h4>
+                <p>Automatic transaction import from major Canadian banks</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">photo_camera</span> Receipt Scanning (Q1 2025)</h4>
+                <p>Snap photos of receipts for automatic entry and categorization</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">family_restroom</span> Shared Budgets (Q2 2025)</h4>
+                <p>Manage household finances together with family members</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="material-icons">auto_awesome</span> AI Insights (Q2 2025)</h4>
+                <p>Personalized financial advice based on your spending patterns</p>
+            </div>
+        </div>
+        <div class="page-number">8</div>
+    </div>
+
+    <!-- Page 9: Contact -->
+    <div class="page">
+        <div style="text-align: center;">
+            <div class="logo">Abky</div>
+            <h2>Let's Build This Together</h2>
+            <p class="subtitle">Your feedback makes Abky better for all Canadians</p>
+            
+            <div style="margin-top: 40pt;">
+                <p style="font-size: 20pt; margin-bottom: 30pt;">
+                    <strong>Website:</strong> app.abky.ca<br>
+                    <strong>Email:</strong> hello@abky.ca<br>
+                    <strong>Feedback:</strong> feedback@abky.ca
+                </p>
+                
+                <p style="font-size: 18pt; color: #6b7280; margin-top: 40pt;">
+                    Thank you for being part of our journey!
+                </p>
+            </div>
+        </div>
+        <div class="page-number">9</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abky - Your Personal Finance Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f0f1e;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Slide container */
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            transition: transform 0.5s ease-in-out;
+            transform: translateX(100%);
+        }
+        
+        .slide:first-child {
+            transform: translateX(0);
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #6366f1;
+        }
+
+        p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.6;
+            color: #a0a0b0;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitle {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: #8b5cf6;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        /* Bucket system styles */
+        .buckets-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .bucket-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            width: 320px;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .bucket-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .bucket-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            font-size: 40px;
+        }
+
+        .bucket-icon.core {
+            background: linear-gradient(135deg, #7aa08a 0%, #5f8470 100%);
+        }
+
+        .bucket-icon.present {
+            background: linear-gradient(135deg, #d4a574 0%, #b88754 100%);
+        }
+
+        .bucket-icon.future {
+            background: linear-gradient(135deg, #8aa0d4 0%, #6b84b8 100%);
+        }
+
+        .bucket-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .bucket-description {
+            font-size: 1rem;
+            color: #a0a0b0;
+            line-height: 1.5;
+        }
+
+        .bucket-percentage {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        /* Feature cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            color: #a0a0b0;
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-button:disabled:hover {
+            transform: scale(1);
+        }
+
+        /* Progress indicators */
+        .progress-dots {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #6366f1;
+            transform: scale(1.3);
+        }
+
+        /* Call to action */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* Value proposition list */
+        .value-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .value-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #e0e0f0;
+        }
+
+        .value-list .material-icons {
+            color: #6366f1;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .buckets-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .bucket-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .nav-button {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <div class="presentation" id="presentation">
+        <!-- Slide 1: Welcome -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="logo">Abky</div>
+                <h1>Take Control of Your Financial Future</h1>
+                <p class="subtitle">A smarter way to manage your money with the 3-Bucket System</p>
+                <p>Welcome to a new approach to personal finance that balances your needs today with your dreams for tomorrow.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>The Challenge We All Face</h2>
+                <ul class="value-list">
+                    <li>
+                        <span class="material-icons">error_outline</span>
+                        <span>Traditional budgeting feels restrictive and complicated</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">trending_down</span>
+                        <span>Hard to balance immediate needs with future goals</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">psychology</span>
+                        <span>Guilt when spending on things that make us happy</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">visibility_off</span>
+                        <span>No clear picture of where our money really goes</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Our Philosophy -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>The Abky Philosophy</h2>
+                <p class="subtitle">Money is a tool for living a balanced life</p>
+                <ul class="value-list">
+                    <li>
+                        <span class="material-icons">balance</span>
+                        <span>Balance is better than restriction</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">sentiment_satisfied</span>
+                        <span>Enjoying today is as important as saving for tomorrow</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">insights</span>
+                        <span>Simple systems create lasting habits</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">favorite</span>
+                        <span>Financial wellness means less stress, more joy</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Introducing 3-Bucket System -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Introducing the 3-Bucket System</h2>
+                <p class="subtitle">A simple framework for complete financial balance</p>
+                <div class="buckets-container">
+                    <div class="bucket-card">
+                        <div class="bucket-icon core">
+                            <span class="material-icons">home</span>
+                        </div>
+                        <h3 class="bucket-title">Core Living</h3>
+                        <p class="bucket-description">Your essentials: rent, groceries, utilities, transportation</p>
+                        <div class="bucket-percentage">50-60%</div>
+                    </div>
+                    <div class="bucket-card">
+                        <div class="bucket-icon present">
+                            <span class="material-icons">celebration</span>
+                        </div>
+                        <h3 class="bucket-title">Present Self</h3>
+                        <p class="bucket-description">Your happiness: dining out, hobbies, entertainment</p>
+                        <div class="bucket-percentage">20-30%</div>
+                    </div>
+                    <div class="bucket-card">
+                        <div class="bucket-icon future">
+                            <span class="material-icons">savings</span>
+                        </div>
+                        <h3 class="bucket-title">Future Self</h3>
+                        <p class="bucket-description">Your security: emergency fund, savings, investments</p>
+                        <div class="bucket-percentage">20-30%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: How It Works -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>How the 3-Bucket System Works</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">pie_chart</span>
+                        </div>
+                        <h3 class="feature-title">Automatic Allocation</h3>
+                        <p class="feature-description">Every transaction is instantly categorized into one of your three buckets</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">tune</span>
+                        </div>
+                        <h3 class="feature-title">Flexible Percentages</h3>
+                        <p class="feature-description">Adjust your bucket sizes based on your life situation and goals</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">visibility</span>
+                        </div>
+                        <h3 class="feature-title">Real-time Insights</h3>
+                        <p class="feature-description">See exactly where you stand with each bucket at any moment</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">trending_up</span>
+                        </div>
+                        <h3 class="feature-title">Progress Tracking</h3>
+                        <p class="feature-description">Watch your financial balance improve month over month</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Why It's Different -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Why Abky is Different</h2>
+                <ul class="value-list">
+                    <li>
+                        <span class="material-icons">check_circle</span>
+                        <span><strong>No guilt spending</strong> - Your Present Self bucket is meant to be enjoyed!</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">check_circle</span>
+                        <span><strong>Canadian-first</strong> - Built for Canadian banking, taxes, and financial systems</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">check_circle</span>
+                        <span><strong>Privacy focused</strong> - Your data stays yours, always</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">check_circle</span>
+                        <span><strong>Actually simple</strong> - No complex categories or endless tracking</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">check_circle</span>
+                        <span><strong>Mobile-first</strong> - Designed for real life, on-the-go use</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Key Features -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Key Features for Early Testers</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">flash_on</span>
+                        </div>
+                        <h3 class="feature-title">Quick Entry</h3>
+                        <p class="feature-description">Add transactions in seconds with smart categorization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">dashboard</span>
+                        </div>
+                        <h3 class="feature-title">Visual Dashboard</h3>
+                        <p class="feature-description">See your bucket balance at a glance with beautiful charts</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">flag</span>
+                        </div>
+                        <h3 class="feature-title">Savings Goals</h3>
+                        <p class="feature-description">Set and track goals within your Future Self bucket</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">notifications</span>
+                        </div>
+                        <h3 class="feature-title">Smart Alerts</h3>
+                        <p class="feature-description">Get notified when buckets need attention</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">insights</span>
+                        </div>
+                        <h3 class="feature-title">Monthly Summary</h3>
+                        <p class="feature-description">Understand your spending patterns and progress</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <span class="material-icons">security</span>
+                        </div>
+                        <h3 class="feature-title">Bank-level Security</h3>
+                        <p class="feature-description">Your financial data is encrypted and protected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Our Vision -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Our Vision for the Future</h2>
+                <p class="subtitle">Building the financial companion Canadians deserve</p>
+                <ul class="value-list">
+                    <li>
+                        <span class="material-icons">account_balance</span>
+                        <span>Automatic bank syncing (coming soon)</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">receipt</span>
+                        <span>Receipt scanning and expense tracking</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">family_restroom</span>
+                        <span>Shared household budgets</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">school</span>
+                        <span>TFSA and RRSP optimization</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">auto_awesome</span>
+                        <span>AI-powered financial insights</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Join Us -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="logo">Abky</div>
+                <h2>Be Part of Something New</h2>
+                <p class="subtitle">Help us build the future of personal finance in Canada</p>
+                <p>As an early tester, you'll shape how Abky evolves. Your feedback will directly influence features, design, and the overall experience.</p>
+                <ul class="value-list">
+                    <li>
+                        <span class="material-icons">card_giftcard</span>
+                        <span>Free access during beta period</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">forum</span>
+                        <span>Direct access to the development team</span>
+                    </li>
+                    <li>
+                        <span class="material-icons">star</span>
+                        <span>Lifetime discount when we launch</span>
+                    </li>
+                </ul>
+                <a href="#" class="cta-button">Start Your Journey</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)" disabled>
+            <span class="material-icons">arrow_back</span>
+        </button>
+        <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">
+            <span class="material-icons">arrow_forward</span>
+        </button>
+    </div>
+
+    <!-- Progress dots -->
+    <div class="progress-dots" id="progressDots"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const presentation = document.getElementById('presentation');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressDots = document.getElementById('progressDots');
+
+        // Create progress dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            progressDots.appendChild(dot);
+        }
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlide() {
+            // Fix for horizontal scrolling
+            slides.forEach((slide, index) => {
+                slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            
+            // Update progress dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Home') goToSlide(0);
+            if (e.key === 'End') goToSlide(totalSlides - 1);
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeSlide(1);  // Swipe left
+            if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right
+        }
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
